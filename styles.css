@@ -1,0 +1,111 @@
+:root {
+  --bg: #0f172a;
+  --card: #102a43;
+  --card-strong: #1e293b;
+  --text: #e2e8f0;
+  --accent: #22c55e;
+  --accent-soft: #38bdf8;
+  --border: rgba(226, 232, 240, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at top, #0f172a 0%, #020617 60%);
+  display: grid;
+  place-items: center;
+}
+
+.page {
+  width: min(100%, 960px);
+  padding: 1.5rem;
+}
+
+.card {
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+  margin: 0 0 1.75rem;
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  letter-spacing: -0.04em;
+}
+
+.selection-group {
+  display: grid;
+  gap: 2rem;
+}
+
+.label {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.button-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+}
+
+.line-button {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  color: var(--text);
+  background: rgba(148, 163, 184, 0.08);
+}
+
+.line-button:hover {
+  transform: translateY(-1px);
+  background: rgba(56, 189, 248, 0.16);
+}
+
+.line-button.selected {
+  background: var(--accent);
+  color: #071b12;
+}
+
+.hidden {
+  display: none;
+}
+
+.summary {
+  margin-top: 1.75rem;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 0.9rem;
+  background: rgba(15, 23, 42, 0.9);
+  color: #cbd5e1;
+}
+
+.reset-button {
+  margin-top: 1.5rem;
+  padding: 0.95rem 1.25rem;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reset-button:hover {
+  background: rgba(56, 189, 248, 0.14);
+}
