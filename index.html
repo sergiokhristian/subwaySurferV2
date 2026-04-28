@@ -4,30 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NYC Subway Line Selector</title>
-  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="page">
-    <section class="card">
-      <h1>NYC Subway Line Selector</h1>
-
-      <div class="selection-group">
-        <div>
-          <p class="label">FROM:</p>
-          <div id="from-buttons" class="button-grid"></div>
-        </div>
-
-        <div id="to-section" class="hidden">
-          <p class="label">TO:</p>
-          <div id="to-buttons" class="button-grid"></div>
-        </div>
-      </div>
-
-      <div id="summary" class="summary hidden"></div>
-      <button id="reset-button" class="reset-button hidden">Reset Selection</button>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
