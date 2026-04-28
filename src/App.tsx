@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { routes, Route } from './routes';
 
 const lines = [
   '1', '2', '3', '4', '5', '6', '7',
@@ -10,9 +11,24 @@ const lineColors: Record<string, string> = {
   '1': '#ff0000', // red
   '2': '#ff0000',
   '3': '#ff0000',
-  '4': '#00ff00', // green
-  '5': '#00ff00',
-  '6': '#00ff00',
+  '4': '#003b00', // green
+  '5': '#003b00',
+  '6': '#003b00',
+  '7': '#8a2be2', // purple
+  'A': '#0000ff', // blue
+  'C': '#0000ff',
+  'E': '#0000ff',
+  // 'B': '#ff00ff', // magenta
+  // 'D': '#ff00ff',
+  // 'F': '#ff00ff',
+  // 'M': '#ff00ff',
+  // 'G': '#ffff00', // yellow
+  'J': '#ff5e00', // orange
+  'Z': '#ff5e00',
+  'N': '#fffb08', // yellow
+  'Q': '#fffb08',
+  'R': '#fffb08',
+  'W': '#fffb08',
   'L': '#808080', // gray
 };
 
@@ -31,6 +47,11 @@ function App() {
   const summaryText = hasSelectedFrom && hasSelectedTo
     ? `Selected route: FROM ${fromLine} → TO ${toLine}`
     : '';
+
+  const selectedRoutes = useMemo(() => {
+    if (!fromLine || !toLine) return [];
+    return routes.filter(route => route.from === fromLine && route.to === toLine);
+  }, [fromLine, toLine]);
 
   function handleFromSelect(line: string) {
     setFromLine(line);
@@ -97,6 +118,16 @@ function App() {
       </div>
 
       {summaryText && <div className="summary">{summaryText}</div>}
+      {selectedRoutes.length > 0 && (
+        <div className="routes-container">
+          {selectedRoutes.map((route, index) => (
+            <div key={index} className="route-details">
+              <p><strong>Direction:</strong> {route.direction}</p>
+              <p><strong>Notes:</strong> {route.notes}</p>
+            </div>
+          ))}
+        </div>
+      )}
       {hasSelectedFrom && (
         <button type="button" className="reset-button" onClick={resetSelection}>
           Reset Selection

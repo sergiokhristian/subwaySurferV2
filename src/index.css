@@ -115,6 +115,20 @@ h1 {
   cursor: pointer;
 }
 
-.reset-button:hover {
-  background: rgba(56, 189, 248, 0.14);
+.routes-container {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.route-details {
+  padding: 1.25rem 1.35rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 0.9rem;
+  background: rgba(15, 23, 42, 0.9);
+  color: #cbd5e1;
+}
+
+.route-details p {
+  margin: 0.5rem 0;
 }
