@@ -6,6 +6,16 @@ const lines = [
   'G', 'J', 'Z', 'L', 'N', 'Q', 'R', 'W',
 ];
 
+const lineColors: Record<string, string> = {
+  '1': '#ff0000', // red
+  '2': '#ff0000',
+  '3': '#ff0000',
+  '4': '#00ff00', // green
+  '5': '#00ff00',
+  '6': '#00ff00',
+  'L': '#808080', // gray
+};
+
 function App() {
   const [fromLine, setFromLine] = useState<string | null>(null);
   const [toLine, setToLine] = useState<string | null>(null);
@@ -36,6 +46,14 @@ function App() {
     setToLine(null);
   }
 
+  function getButtonStyle(line: string, isSelected: boolean) {
+    if (isSelected) {
+      return { backgroundColor: 'var(--accent)', color: '#071b12' };
+    }
+    const color = lineColors[line];
+    return color ? { backgroundColor: color, color: '#ffffff' } : {};
+  }
+
   return (
     <main className="app-card">
       <h1>NYC Subway Line Selector</h1>
@@ -48,7 +66,8 @@ function App() {
               <button
                 key={line}
                 type="button"
-                className={`line-button ${fromLine === line ? 'selected' : ''}`}
+                className="line-button"
+                style={getButtonStyle(line, fromLine === line)}
                 onClick={() => handleFromSelect(line)}
               >
                 {line}
@@ -65,7 +84,8 @@ function App() {
                 <button
                   key={line}
                   type="button"
-                  className={`line-button ${toLine === line ? 'selected' : ''}`}
+                  className="line-button"
+                  style={getButtonStyle(line, toLine === line)}
                   onClick={() => handleToSelect(line)}
                 >
                   {line}
