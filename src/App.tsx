@@ -33,6 +33,7 @@ const lineColors: Record<string, string> = {
 };
 
 function App() {
+  const [city, setCity] = useState<'NY' | 'DC'>('NY');
   const [fromLine, setFromLine] = useState<string | null>(null);
   const [toLine, setToLine] = useState<string | null>(null);
 
@@ -77,9 +78,27 @@ function App() {
 
   return (
     <main className="app-card">
-      <h1>NYC Subway Line Selector</h1>
+      <header className="app-header">
+        <h1>{city === 'NY' ? 'NYC Subway Line Selector' : 'DC Metro Line Selector'}</h1>
+        <div className="city-toggle" role="group" aria-label="Select transit system">
+          {(['NY', 'DC'] as const).map((option) => (
+            <button
+              key={option}
+              type="button"
+              className={city === option ? 'city-option active' : 'city-option'}
+              aria-pressed={city === option}
+              onClick={() => {
+                setCity(option);
+                resetSelection();
+              }}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      </header>
 
-      <div className="selection-group">
+      {city === 'NY' ? <div className="selection-group">
         <section>
           <p className="label">FROM:</p>
           <div className="button-grid">
@@ -115,10 +134,14 @@ function App() {
             </div>
           </section>
         )}
-      </div>
+      </div> : (
+        <div className="city-placeholder">
+          <p>DC Metro selection is coming soon.</p>
+        </div>
+      )}
 
-      {summaryText && <div className="summary">{summaryText}</div>}
-      {selectedRoutes.length > 0 && (
+      {city === 'NY' && summaryText && <div className="summary">{summaryText}</div>}
+      {city === 'NY' && selectedRoutes.length > 0 && (
         <div className="routes-container">
           {selectedRoutes.map((route, index) => (
             <div key={index} className="route-details">
@@ -128,7 +151,7 @@ function App() {
           ))}
         </div>
       )}
-      {hasSelectedFrom && (
+      {city === 'NY' && hasSelectedFrom && (
         <button type="button" className="reset-button" onClick={resetSelection}>
           Reset Selection
         </button>
